@@ -4,19 +4,19 @@
     <tr>
       <th>Airline</th>
       <th>Airport</th>
-      <th>Flight<br>Number</th>
-      <th>Departure<br>Date&Time</th>
+      <th>Number</th>
+      <th>Departure</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
+    <% flights.sort((a, b) => new Date(a.departs) - new Date(b.departs)) %>
     <% flights.forEach(function(flight) { %>
-      <tr>
+      <tr <%- flight.departs < new Date() ? 'style="color:red;"' : 'style="color:black;"' %>>
         <td><%= flight.airline %></td>
         <td><%= flight.airport %></td>
         <td><%= flight.flightNo %></td>
-        <td><%= flight.departs %></td>
-        <td><a href="/flights/<%= flight._id %>">DETAILS</a></td>
+        <td><%= flight.departs.toString().slice(0, 21) %></td>
       </tr>
     <% }); %>
   </tbody>
