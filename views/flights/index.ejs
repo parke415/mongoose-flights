@@ -3,20 +3,21 @@
   <thead>
     <tr>
       <th>Airline</th>
-      <th>Airport</th>
-      <th>Number</th>
+      <th>Flight</th>
+      <th>Origin</th>
       <th>Departure</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     <% flights.sort((a, b) => new Date(a.departs) - new Date(b.departs)) %>
-    <% flights.forEach(function(flight) { %>
-      <tr <%- flight.departs < new Date() ? 'style="color:red;"' : 'style="color:black;"' %>>
+    <% flights.forEach(flight => { %>
+      <tr <%- flight.departs < new Date() ? 'style="color:red;"' : '' %>>
         <td><%= flight.airline %></td>
-        <td><%= flight.airport %></td>
         <td><%= flight.flightNo %></td>
+        <td><%= flight.airport %></td>
         <td><%= flight.departs.toString().slice(0, 21) %></td>
+        <td><a href="/flights/<%= flight.id %>">DETAILS</a></td>
       </tr>
     <% }); %>
   </tbody>

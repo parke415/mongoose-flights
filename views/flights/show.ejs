@@ -1,0 +1,33 @@
+<%- include('../partials/header') %>
+<h2>Itinerary:</h2>
+<section id="details">
+  <ul>
+    <li>Departing from <b><%= flight.airport %></b> on <%= flight.departs.toString().slice(0, 15) %> at <b><%= flight.departs.toString().slice(16, 21) %></b></li>
+    <% flight.destinations.sort((a, b) => new Date(a.arrival) - new Date(b.arrival)) %>
+    <% flight.destinations.forEach(destination => { %>
+    <li>Arriving at <b><%= destination.airport %></b> on <%= destination.arrival.toString().slice(0, 15) %> at <b><%= destination.arrival.toString().slice(16, 21) %></b></li>
+    <% }); %>
+  </ul>
+  <br>
+  <form id="addition" action="/flights/<%= flight.id %>/destinations" method="POST">
+    <label>Airport of Destination:</label>
+    <br>
+    <select name="airport">
+      <option value="AUS">AUS (Austin, TX)</option>
+      <option value="DFW">DFW (Dallas, TX)</option>
+      <option value="DEN">DEN (Denver, CO)</option>
+      <option value="LAX">LAX (Los Angeles, CA)</option>
+      <option value="SAN">SAN (San Diego, CA)</option>
+    </select>
+    <br>
+    <br>
+    <label>Arrival Date & Time:</label>
+    <br>
+    <input type="datetime-local" name="arrival">
+    <br>
+    <br>
+    <br>
+    <input type="submit" value="Add Stop">
+  </form>
+</section>
+<%- include('../partials/footer') %>
