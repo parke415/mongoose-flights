@@ -12,13 +12,13 @@
   <tbody>
     <% flights.sort((a, b) => new Date(a.departs) - new Date(b.departs)) %>
     <% flights.forEach(flight => { %>
-      <tr <%- flight.departs < new Date() ? 'style="color:red;"' : '' %>>
-        <td><%= flight.airline %></td>
-        <td><%= flight.flightNo %></td>
-        <td><%= flight.airport %></td>
-        <td><%= flight.departs.toString().slice(0, 21) %></td>
-        <td><a href="/flights/<%= flight.id %>">DETAILS</a></td>
-      </tr>
+    <tr <%- flight.departs < new Date() ? 'style="color:red;"' : '' %>>
+      <td><%= flight.airline %></td>
+      <td><%= flight.flightNo %></td>
+      <td><%= flight.airport %></td>
+      <td><%= flight.departs.toString().slice(0, 21) %></td>
+      <td><a href="/flights/<%= flight.id %>">DETAILS</a></td>
+    </tr>
     <% }); %>
   </tbody>
 </table>
