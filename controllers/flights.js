@@ -20,14 +20,7 @@ function show(req, res) {
     flight.destinations.forEach(destination => unavailable.push(destination.airport));
     const available = AIRPORTS.filter(airport => flight.airport !== airport && !unavailable.includes(airport));
     Ticket.find({flight: flight._id}, function(err, tickets) {
-      const testTicket1 = new Ticket;
-      testTicket1.seat = 'A15';
-      testTicket1.price = 399;
-      const testTicket2 = new Ticket;
-      testTicket2.seat = 'A20';
-      testTicket2.price = 405;
-      const testTickets = [testTicket1, testTicket2];
-      res.render('flights/show', {title: `${flight.airline} Airlines — Flight ${flight.flightNo}`, flight, tickets: testTickets, available, DEFAULT_DATE});
+      res.render('flights/show', {title: `${flight.airline} Airlines — Flight ${flight.flightNo}`, flight, tickets, available, DEFAULT_DATE});
     });
   });
 }

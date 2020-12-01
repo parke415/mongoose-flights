@@ -1,6 +1,6 @@
 <%- include('../partials/header') %>
 <h2>Itinerary:</h2>
-<section id="itinerary">
+<section>
   <ul>
     <li>Departing from <b><%= flight.airport %></b> on <%= flight.departs.toString().slice(0, 15) %> at <b><%= flight.departs.toString().slice(16, 21) %></b></li>
     <% flight.destinations.sort((a, b) => new Date(a.arrival) - new Date(b.arrival)) %>
@@ -9,7 +9,7 @@
     <% }); %>
   </ul>
   <br>
-  <form id="addition" action="/flights/<%= flight.id %>/destinations" method="POST">
+  <form action="/flights/<%= flight.id %>/destinations" method="POST">
     <label>Airport of Destination:</label>
     <br>
     <select name="airport">
@@ -25,18 +25,18 @@
     <br>
     <br>
     <br>
-    <input type="submit" value="Add Stop">
+    <button type="submit">Add Stop</button>
     <br>
     <br>
   </form>
 </section>
 <h2>Tickets:</h2>
-<section id="tickets">
+<section>
   <ul>
     <% tickets.forEach(ticket => { %>
-    <li>Seated at <b><%= ticket.seat %></b> for <b>$<%= ticket.price %> USD</b></li>
+    <li>Seated at <b><%= ticket.seat %></b> for <b>$<%= ticket.price %></b>(USD) <a href="/flights/<%= flight._id %>/tickets/<%= ticket._id %>/delete">DELETE</a></li>
     <% }); %>
   </ul>
-  <a href="/tickets/new">New Ticket</a>
+  <a href="/flights/<%= flight._id %>/tickets/new">New Ticket</a>
 </section>
 <%- include('../partials/footer') %>

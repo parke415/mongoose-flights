@@ -1,5 +1,16 @@
 <%- include('../partials/header') %>
-
-
-
+<form action="/flights/<%= id %>/tickets" method="POST" autocomplete="off">
+  <label>Seat:</label>
+  <br>
+  <input type="text" name="seat" placeholder="A1-F99">
+  <br>
+  <br>
+  <label>Price:</label>
+  <br>
+  <input type="text" name="price" placeholder="($USD)">
+  <br>
+  <br>
+  <br>
+  <button type="submit">Add Ticket</button>
+</form>
 <%- include('../partials/footer') %>
